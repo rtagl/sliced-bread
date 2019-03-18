@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import api from '../../api'
 
-export default class Home extends Component {
+class Home extends Component {
 
   
   componentDidMount(){
@@ -11,7 +11,7 @@ export default class Home extends Component {
     console.log(api.getLocalStorageUser())
 
     Axios.get('http://localhost:5000/api/whatever',).then(res=>{
-      // console.log(res)
+      console.log(res)
     })
 
   }
@@ -20,9 +20,20 @@ export default class Home extends Component {
   render() {                
     return (
       <div className="Home">
-        <h2>Home</h2>
-        <p>This is a sample project with the MERN stack</p>
+  
+        <form id="form">
+          <h2>Join your party</h2>
+          <div>
+            <input type="text" placeholder="Party Code"></input>
+            <button type="submit">Submit</button>
+          </div>
+
+        </form>
+        
+        
       </div>
     );
   }
 }
+
+export default Home

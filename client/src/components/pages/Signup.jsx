@@ -38,16 +38,20 @@ export default class Signup extends Component {
   render() {
     return (
       <div className="Signup">
-        <h2>Signup</h2>
-        <form>
+
+        <form id="form">
+          <h2>Signup</h2>
           Username: <input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /> <br />
           Name: <input type="text" value={this.state.name} name="name" onChange={this.handleInputChange} /> <br />
           Password: <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Signup</button>
+
+          {this.state.message && <div className="error-message">
+            {this.state.message}
+          </div>}
+
         </form>
-        {this.state.message && <div className="info info-danger">
-          {this.state.message}
-        </div>}
+
       </div>
     );
   }

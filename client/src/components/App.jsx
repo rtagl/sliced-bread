@@ -5,9 +5,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import api from '../api';
-import logo from '../logo.svg';
 
-export default class App extends Component {
+
+class App extends Component {
   state = {
     countries: [],
     user: {},
@@ -34,18 +34,24 @@ export default class App extends Component {
   }
 
   render() {
+    let text = 'Welcome, '
     return (
       <div className="App">
+
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">MERN Boilerplate</h1>
-          user: {this.state.user.username}
-          <NavLink to="/" exact>Home</NavLink>
-          {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
-          {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
-          <NavLink to="/secret">Secret</NavLink>
+          <div className="Logo">
+            <h1>Sliced Bread</h1>
+          </div>
+          
+          <div className="App-info">
+            <NavLink to="/" exact>Home</NavLink>
+            {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
+            {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+            {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+            <NavLink to="/profile">{api.isLoggedIn() ? `${text} ${this.state.user.username}!` : null}</NavLink>
+          </div>
         </header>
+
         <Switch>
 
 
@@ -73,15 +79,4 @@ export default class App extends Component {
   }
 }
 
-/*          <Route
-            path='/'
-            render={(props) => <Home {...props} setUser={this.setUser} />}
-          />
-          <Route
-            path='/signup'
-            render={(props) => <Signup {...props} setUser={this.setUser} />}
-          />
-          <Route
-            path='/login'
-            render={(props) => <Login {...props} setUser={this.setUser}/>}
-          />*/
+export default App

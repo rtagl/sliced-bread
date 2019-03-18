@@ -22,66 +22,70 @@ $primary: #32c3ff;
 body {
   margin: 0;
   padding: 0;
+  background-color: rgb(243, 240, 240);
   font-family: sans-serif;
 }
 
-.info {
-  margin: 20px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  display: inline-block;
-  background-color: #5776e9;
-  color: white;
+// .info {
+//   margin: 20px;
+//   padding: 10px 20px;
+//   border-radius: 10px;
+//   display: inline-block;
+//   background-color: #5776e9;
+//   color: white;
+// }
+
+.Logo {
+  padding-left: 30px;
 }
 
-.info.info-danger {
-  background-color: #e73f3f;
+.error-message {
+  background: #F02B63;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 // --------------------
 // Style for App component
-.App {
-  text-align: center;
+// .App {
+//   // text-align: center;
+// }
 
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
+
+.App-header {
+  background-color: rgb(148, 212, 0);
+  color: rgb(0, 11, 172);
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    color: rgb(0, 11, 172);
+    padding: 0 5px;
+    text-decoration: unset;
   }
 
-  .App-header {
-    background-color: $primary;
-    padding: 20px;
-    color: white;
-
-    a {
-      color: white;
-      padding: 0 5px;
-      text-decoration: unset;
-    }
-
-    a.active {
-      font-weight: bold;
-    }
-  }
-
-  .App-title {
-    font-size: 1.5em;
-  }
-
-  .App-intro {
-    font-size: large;
-  }
-
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
+  a.active {
+    font-weight: bold;
   }
 }
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.App-info {
+  padding-top: 30px;
+  padding-right: 30px;
+}
+
 
 // --------------------
 // Style for Home component
@@ -98,4 +102,48 @@ body {
     font-size: 1.2em;
     color: $primary;
   }
+}
+
+#form {
+  margin: 30px auto;
+  width: 380px;
+}
+
+#form label {
+  color: #666;
+  display: inline-block;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#form input,
+#form button {
+  box-sizing: border-box;
+  font-size: 14px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#form button {
+  background: #43a3e6;
+  border: 1px solid #43a3e6;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+#form button:hover {
+  background: #fff;
+  color: #43a3e6;
+  transition: .3s ease background;
 }
