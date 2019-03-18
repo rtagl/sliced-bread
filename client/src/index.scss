@@ -22,8 +22,8 @@ $primary: #32c3ff;
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(243, 240, 240);
-  font-family: sans-serif;
+  background-color: rgb(41, 39, 39);
+  font-family: 'Roboto', sans-serif;
 }
 
 // .info {
@@ -57,32 +57,37 @@ body {
 
 
 .App-header {
-  background-color: rgb(148, 212, 0);
-  color: rgb(0, 11, 172);
+  background-color: rgb(24, 23, 23);
+  color: rgb(148, 212, 0);
   display: flex;
   justify-content: space-between;
 
   a {
-    color: rgb(0, 11, 172);
-    padding: 0 5px;
+    color: rgb(148, 212, 0);
+    padding: 0 8px;
     text-decoration: unset;
   }
 
   a.active {
     font-weight: bold;
   }
+
+  h1 {
+    font-size: 1.5rem;
+    font-style: none;
+  }
 }
 
-.App-title {
-  font-size: 1.5em;
-}
+// .App-title {
+//   font-size: 1.5em;
+// }
 
 .App-intro {
   font-size: large;
 }
 
 .App-info {
-  padding-top: 30px;
+  padding-top: 20px;
   padding-right: 30px;
 }
 
@@ -90,6 +95,10 @@ body {
 // --------------------
 // Style for Home component
 .Home {
+  background-image: url('./images/restaurant.png');
+  background-size: cover;
+  background-position: center top;
+  height: 100vh;
   p {
     font-size: 1.2em;
   }
@@ -110,10 +119,10 @@ body {
 }
 
 #form label {
-  color: #666;
+  color: rgb(148, 212, 0);
   display: inline-block;
   margin-bottom: 10px;
-  text-align: center;
+  // text-align: center;
   width: 100%;
 }
 
@@ -146,4 +155,15 @@ body {
   background: #fff;
   color: #43a3e6;
   transition: .3s ease background;
+}
+
+.Party-code {
+  padding-top: 50px;
+  color: white;
+  text-align: center;
+}
+
+#form h2 {
+  color: rgb(148, 212, 0);
+  text-align: center;
 }

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const receiptSchema = new Schema({
   owner: String, //userID
   attendees: Array, //array of userIDs
+  group: String,
   items: Array,
   paid: Boolean
 }, {

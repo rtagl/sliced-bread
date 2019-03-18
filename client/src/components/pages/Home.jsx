@@ -20,16 +20,18 @@ class Home extends Component {
   render() {                
     return (
       <div className="Home">
-  
-        <form id="form">
-          <h2>Join your party</h2>
-          <div>
-            <input type="text" placeholder="Party Code"></input>
-            <button type="submit">Submit</button>
-          </div>
+        <div className="Party-code">
+          <form id="form">
 
-        </form>
-        
+            <h2>Join Your Party</h2>
+
+            <div>
+              <input type="text" placeholder="Party Code"></input>
+              <button type="submit">Submit</button>
+            </div>
+
+          </form>
+        </div>
         
       </div>
     );
