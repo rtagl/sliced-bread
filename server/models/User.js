@@ -8,7 +8,7 @@ const userSchema = new Schema({
   receipts: Array,
   avatar: {
     type: String,
-    default: "../images/Happy-Minion-Icon.png"
+    // default: "../images/Happy-Minion-Icon.png"
   }
 }, {
     timestamps: {

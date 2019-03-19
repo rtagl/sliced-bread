@@ -192,3 +192,55 @@ body {
 .new-receipt-btn:hover {
   background-color: rgb(206, 206, 206);
 }
+
+.form-receipt {
+  margin: 20px 30px 15px 30px;
+  width: 300px;
+}
+
+.form-receipt label {
+  color: $secondary;
+  display: inline-block;
+  margin-bottom: 10px;
+  // text-align: center;
+  width: 100%;
+}
+
+.form-receipt input,
+.form-receipt button {
+  box-sizing: border-box;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid $secondary;
+  height: 40px;
+  outline: 0;
+  padding: 4px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.form-receipt button {
+  background: $secondary;
+  border: 2px solid $secondary;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 100%;
+}
+
+.form-receipt button:hover {
+  background: #fff;
+  color: $secondary;
+  transition: .3s ease background;
+}
+
+.receipt-results {
+  margin-left: 30px;
+  margin-bottom: 30px;
+}

@@ -37,10 +37,10 @@ export default class Login extends Component {
 
         <form id="form">
           <h2>Login</h2>
-          <label for="username">Username: </label>
+          <label htmlFor="username">Username: </label>
           <input type="text" value={this.state.username} name="username" onChange={this.handleInputChange} /> <br />
 
-          <label for="password">Password: </label>
+          <label htmlFor="password">Password: </label>
           <input type="password" value={this.state.password} name="password" onChange={this.handleInputChange} /> <br />
           <button onClick={(e) => this.handleClick(e)}>Login</button>
 

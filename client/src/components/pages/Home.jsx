@@ -23,7 +23,7 @@ class Home extends Component {
         <div className="Party-code">
           <form id="form">
 
-            <h2>Join Your Party</h2>
+            <h2>Find a Group</h2>
 
             <div>
               <input type="text" placeholder="Party Code"></input>

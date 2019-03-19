@@ -61,7 +61,7 @@ class App extends Component {
         <Switch>
 
 
-        <Route
+          <Route
             exact
             path='/'
             render={(props) => <Home {...props}  setUser={this.setUser} />}
@@ -78,6 +78,11 @@ class App extends Component {
             path='/receipt'
             render={(props) => <ReceiptUpload {...props} setUser={this.setUser} />}
           />
+          <Route
+            path='/profile'
+            render={(props) => <ReceiptUpload {...props} setUser={this.setUser} />}
+          />
+          
 
           
           <Route render={() => <h2>404</h2>} />
