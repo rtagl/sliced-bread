@@ -5,7 +5,11 @@ const userSchema = new Schema({
   username: String,
   password: String,
   name: String,
-  receipts: Array
+  receipts: Array,
+  avatar: {
+    type: String,
+    default: "../images/Happy-Minion-Icon.png"
+  }
 }, {
     timestamps: {
       createdAt: 'created_at',

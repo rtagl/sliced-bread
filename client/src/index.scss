@@ -1,7 +1,7 @@
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
-
+$secondary: rgb(44, 204, 156);
 
 // ----------------------------------------
 // To install Boostrap:
@@ -22,7 +22,7 @@ $primary: #32c3ff;
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(41, 39, 39);
+  background-color: rgb(22, 21, 21);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -57,19 +57,24 @@ body {
 
 
 .App-header {
-  background-color: rgb(24, 23, 23);
-  color: rgb(148, 212, 0);
+  background-color: rgb(5, 5, 5);
+  color: $secondary;
   display: flex;
   justify-content: space-between;
 
   a {
-    color: rgb(148, 212, 0);
+    color: $secondary;
     padding: 0 8px;
     text-decoration: unset;
   }
 
+  a:hover {
+    color: rgb(206, 206, 206)
+  }
+
   a.active {
     font-weight: bold;
+    font-size: 1.1rem;
   }
 
   h1 {
@@ -87,7 +92,7 @@ body {
 }
 
 .App-info {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-right: 30px;
 }
 
@@ -119,7 +124,7 @@ body {
 }
 
 #form label {
-  color: rgb(148, 212, 0);
+  color: $secondary;
   display: inline-block;
   margin-bottom: 10px;
   // text-align: center;
@@ -129,7 +134,10 @@ body {
 #form input,
 #form button {
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid $secondary;
+  height: 40px;
   outline: 0;
   padding: 4px;
   width: 100%;
@@ -137,7 +145,7 @@ body {
 }
 
 #form button {
-  background: #43a3e6;
+  background: #3995d6;
   border: 1px solid #43a3e6;
   border-radius: 4px;
   color: #fff;
@@ -164,6 +172,23 @@ body {
 }
 
 #form h2 {
-  color: rgb(148, 212, 0);
+  color: $secondary;
   text-align: center;
+}
+
+.new-receipt-btn {
+  height: 30px;
+  width: 125px;
+  border: none;
+  padding: 6px 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: $secondary;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.8rem;
+  color: rgb(5, 5, 5)
+}
+
+.new-receipt-btn:hover {
+  background-color: rgb(206, 206, 206);
 }

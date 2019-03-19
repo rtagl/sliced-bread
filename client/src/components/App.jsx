@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Home from './pages/Home';
-
+import ReceiptUpload from './pages/ReceiptUpload'
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import api from '../api';
@@ -40,15 +40,21 @@ class App extends Component {
 
         <header className="App-header">
           <div className="Logo">
-              <h1>Sliced Bread</h1>
+              <h1>Bread Slice</h1>
           </div>
           
           <div className="App-info">
+
+            <NavLink to="/receipt" exact><button className="new-receipt-btn">NEW RECEIPT</button></NavLink>
+
             <NavLink to="/" exact>Home</NavLink>
+
             {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
             {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
             {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+
             <NavLink to="/profile">{api.isLoggedIn() ? `${text} ${this.state.user.username}!` : null}</NavLink>
+
           </div>
         </header>
 
@@ -68,7 +74,11 @@ class App extends Component {
             path='/login'
             render={(props) => <Login {...props} setUser={this.setUser}/>}
           />
-          
+          <Route
+            path='/receipt'
+            render={(props) => <ReceiptUpload {...props} setUser={this.setUser} />}
+          />
+
           
           <Route render={() => <h2>404</h2>} />
 
