@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import { Redirect } from 'react-router-dom'
 import api from '../../api'
+import { SERVER_URL } from '../../config'
 
 class ReceiptUpload extends Component {
 
@@ -96,7 +97,7 @@ class ReceiptUpload extends Component {
         console.log(e.target[i+"_0"].value, e.target[i+"_1"].value);
         updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
     }
-    Axios.post('http://localhost:5000/api/savedReceipt', { items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
+    Axios.post(`${SERVER_URL}/savedReceipt`, { items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
       console.log(responseFromServer, receiptName, guests, updatedReceipt)
     })
   }
