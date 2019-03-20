@@ -3,13 +3,13 @@ import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import ReceiptUpload from './pages/ReceiptUpload'
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import api from '../api';
 
 
 class App extends Component {
   state = {
-    countries: [],
     user: {},
   }
 
@@ -80,7 +80,7 @@ class App extends Component {
           />
           <Route
             path='/profile'
-            render={(props) => <ReceiptUpload {...props} setUser={this.setUser} />}
+            render={(props) => <Profile {...props} setUser={this.setUser} />}
           />
           
 

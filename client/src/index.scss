@@ -1,8 +1,10 @@
 // --------------------
 // Definition of variables
-$primary: #32c3ff;
-$secondary: rgb(44, 204, 156);
-
+$primary: #20b3f1;
+$secondary: rgb(240, 238, 238);
+$third: rgb(29, 29, 29);
+$fourth: rgb(0, 127, 188);
+// rgb(44, 204, 156)
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -22,7 +24,7 @@ $secondary: rgb(44, 204, 156);
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(22, 21, 21);
+  background-color: rgb(231, 231, 231);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -49,15 +51,10 @@ body {
   border-radius: 5px;
 }
 
-// --------------------
-// Style for App component
-// .App {
-//   // text-align: center;
-// }
 
 
 .App-header {
-  background-color: rgb(5, 5, 5);
+  background-color: rgb(0, 127, 188);
   color: $secondary;
   display: flex;
   justify-content: space-between;
@@ -69,7 +66,7 @@ body {
   }
 
   a:hover {
-    color: rgb(206, 206, 206)
+    color: rgb(185, 181, 181)
   }
 
   a.active {
@@ -111,12 +108,7 @@ body {
 
 // --------------------
 // Style for Secret component
-.Secret {
-  .result {
-    font-size: 1.2em;
-    color: $primary;
-  }
-}
+
 
 #form {
   margin: 30px auto;
@@ -124,7 +116,7 @@ body {
 }
 
 #form label {
-  color: $secondary;
+  color: $third;
   display: inline-block;
   margin-bottom: 10px;
   // text-align: center;
@@ -136,7 +128,7 @@ body {
   box-sizing: border-box;
   font-size: 16px;
   border-radius: 4px;
-  border: 1px solid $secondary;
+  border: 1px solid $fourth;
   height: 40px;
   outline: 0;
   padding: 4px;
@@ -181,12 +173,13 @@ body {
   width: 125px;
   border: none;
   padding: 6px 14px;
+  border: 1px solid rgb(226, 226, 226);
   cursor: pointer;
   border-radius: 4px;
-  background-color: $secondary;
+  background-color: rgb(33, 167, 33);
   font-family: 'Roboto', sans-serif;
   font-size: 0.8rem;
-  color: rgb(5, 5, 5)
+  color: rgb(226, 226, 226)
 }
 
 .new-receipt-btn:hover {
@@ -243,4 +236,60 @@ body {
 .receipt-results {
   margin-left: 30px;
   margin-bottom: 30px;
+  margin-top: 25px;
+}
+
+.receipt-results button {
+  margin-top: 15px;
+}
+
+.items-chart {
+  width: 350px
+}
+
+label#edit-receipt {
+  margin-bottom: 0.1rem;;
+}
+
+.items-chart input {
+  width: 45%;
+  color: rgb(14, 13, 13);
+  font-family: 'Roboto', sans-serif;
+  border: 1px solid $secondary;
+  margin: 5px;
+  height: 40px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+#submit-btn {
+  background: $secondary;
+  border: 2px solid $secondary;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: .3s ease background;
+  width: 98%;
+
+}
+
+#submit-btn:hover {
+  background: #fff;
+  color: $secondary;
+  transition: .3s ease background;
+}
+
+
+.receipt-page {
+  display: flex;
+  flex-direction: row;
 }

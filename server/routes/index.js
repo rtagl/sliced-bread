@@ -10,10 +10,11 @@ router.get("/whatever", (req, res, next) => {
   res.json({user:req.user})
 })
 
-router.post("/savedReceipt", isLoggedIn, (req, res, next) => {
+router.post("/savedReceipt", (req, res, next) => {
   console.log(req.body,'sup')
   let receipt = new Receipt(req.body);
-
+  receipt.receiptName = req.body.receiptName;
+  receipt.guests = req.body.guests
   receipt.owner = req.user._id
   receipt.save((err,doc)=>{
     if(!err){

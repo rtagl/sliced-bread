@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-
+import { Redirect } from 'react-router-dom'
+import api from '../../api'
 
 class ReceiptUpload extends Component {
 
@@ -9,32 +10,51 @@ class ReceiptUpload extends Component {
     imageViewer: '',
     items: [],
     product: '',
+    receiptName: '',
+    guests: '',
     price: ''
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let myImage = this.state.image
-    console.log('in handleSubmit', myImage)
+    let myImage = this.state.image;
+
     window.Tesseract.recognize(myImage)
     .then(result => {
         this.cleanUp(result.text)
     }).progress(result => {
+      document.getElementById("go_button").style.visibility = "hidden";
       document.getElementById("ocr_status")
         .innerText = result["status"] + " (" +
-        (result["progress"] * 100) + "%)";
-    })
+        (result["progress"] * 100).toFixed(2) + "%)";
 
+    }).then(() => {
+      document.getElementById("edit-receipt").style.visibility = "visible"
+      document.getElementById("ocr_status").innerText = "";
+      document.getElementById("submit-btn").style.visibility= "visible";
+    })
+  }
+
+  handleGuests = (e) => {
+    this.setState({
+      guests: e.target.value
+    })
+  }
+
+  handleReceiptName = (e) => {
+    this.setState({
+      receiptName: e.target.value
+    })
   }
 
   showReceipt = () => {
     return this.state.items.map((item,i)=> {
       return (
-        <div>
+        <div key={i} className="items-chart">
           <input name={i+'_0'} defaultValue={item[0]} />
-          <input name={i+'_1'}defaultValue={item[1]} />
+          <input name={i+'_1'} defaultValue={item[1]} />
         </div>
-      );
+      );  
     })
   }
 
@@ -42,7 +62,6 @@ class ReceiptUpload extends Component {
     e.preventDefault()
     let reader = new FileReader()
     let image = e.target.files[0]
-    console.log('e.target.files', image)
 
     reader.onloadend = () => {
       this.setState({
@@ -54,7 +73,6 @@ class ReceiptUpload extends Component {
   }
 
   cleanUp = (text) => {
-  // console.log(text.split("\n"));
     let lines = text.split("\n")
     let items = []
     lines.forEach((line) => {
@@ -66,62 +84,83 @@ class ReceiptUpload extends Component {
     this.setState({
       items: items
     })
-    console.log(items)
-
   }
 
 
   newSubmit = (e) => {
     e.preventDefault()
+    let receiptName = this.state.receiptName
+    let guests = this.state.guests
     let updatedReceipt = [] 
     for(let i=0; i < this.state.items.length; i++){
         console.log(e.target[i+"_0"].value, e.target[i+"_1"].value);
-      updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
+        updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
     }
-    Axios.post('http://localhost:5000/api/savedReceipt', {items: updatedReceipt}).then(updatedReceipt => {
-      console.log(updatedReceipt)
+    Axios.post('http://localhost:5000/api/savedReceipt', { items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
+      console.log(responseFromServer, receiptName, guests, updatedReceipt)
     })
   }
+
   render() {
+    if (!api.isLoggedIn()) return <Redirect to="/login" />
     return (
       <div>
-        <div>
-          <form class="form-receipt" onSubmit={(e) => this.handleSubmit(e)}>
+        <div className="receipt-page container">
+          <form className="form-receipt" onSubmit={e => this.handleSubmit(e)}>
             <label htmlFor="receiptName">Name Your Receipt</label>
             <input
-              name="receiptName"
+              id="receiptName"
               type="text"
-              id="url"
               placeholder="Receipt Name"
-              
+              value={this.state.receiptName}
+              onChange={(e) => this.handleReceiptName(e)}
             />
 
-            <label htmlFor="inviteGuests">Add Guests</label> 
+            <label htmlFor="guests">Add Guests</label>
             <input
-              name="inviteGuests"
+              id="guests"
               type="text"
               placeholder="Add guest names"
+              value={this.state.guests}
+              onChange={(e) => this.handleGuests(e)}
             />
 
             <label htmlFor="photo">Upload Your Receipt</label>
-            <input style={{color: 'white', fontSize: '0.8rem', border: 'none', marginBottom: '5px'}} 
-              type="file" 
-              name="photo" 
-              
-              onChange={(e) => {this.imageChange(e)}}
+            <input
+              style={{
+                color: "white",
+                fontSize: "0.8rem",
+                border: "none",
+                marginBottom: "5px"
+              }}
+              type="file"
+              name="photo"
+              onChange={(e) => {
+                this.imageChange(e);
+              }}
             />
-            
-            <button type="submit" id="go_button">SAVE</button>
-          </form>
-        </div>
 
-        <div className="receipt-results">
-          <form onSubmit={this.newSubmit}>
-            {this.showReceipt()}
-            <button type="submit"></button>
+            <button type="submit" id="go_button" style={{visibility: 'visibile'}}>
+              UPLOAD FILE
+            </button>
           </form>
 
-          <div style={{ color: 'white' }} id="ocr_status"> </div>
+          <div className="receipt-results">
+
+            <div style={{ color: "white" }} id="ocr_status">
+              {" "}
+            </div>
+
+            <form onSubmit={this.newSubmit}>
+              <label id="edit-receipt" style={{ visibility: 'hidden', color: 'rgb(221, 118, 34)'}}>Edit Receipt</label>
+              {this.showReceipt()}
+              <button id="submit-btn" type="submit" style={{ visibility: 'hidden' }}>
+                SAVE AND SUBMIT
+              </button>
+
+            </form>
+          </div>
+
         </div>
 
       </div>
@@ -130,3 +169,5 @@ class ReceiptUpload extends Component {
 }
 
 export default ReceiptUpload
+
+

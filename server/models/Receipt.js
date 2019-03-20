@@ -3,8 +3,9 @@ const Schema = mongoose.Schema;
 
 const receiptSchema = new Schema({
   owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }, //userID
-  attendees: Array, //array of userIDs
+  guests: String, //array of userIDs
   imgPath: String,
+  receiptName: String,
   items: Array,
   paid: Boolean
 }, {
