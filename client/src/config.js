@@ -1,1 +1,4 @@
-export const SERVER_URL = 'https://breadslice.herokuapp.com/api'
+export const SERVER_URL =
+         process.env.NODE_ENV === "production"
+           ? "https://breadslice.herokuapp.com/api"
+           : "http://localhost:5000/api";
