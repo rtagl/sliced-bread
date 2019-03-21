@@ -6,6 +6,9 @@ import api from '../../api'
 
 class Profile extends Component {
 
+  state = {
+    user: {}
+  }
   showUser = (props) => {
     console.log('hi', props)
   }
@@ -14,7 +17,7 @@ class Profile extends Component {
     if (!api.isLoggedIn()) return <Redirect to="/login" />;
     return (
       <div>
-        HI
+        {/* <h2>{props.user}</h2> */}
       </div>
     )
   }

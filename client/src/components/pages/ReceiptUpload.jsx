@@ -7,19 +7,23 @@ import { SERVER_URL } from '../../config'
 class ReceiptUpload extends Component {
 
   state = {
-    image: '',
+    image: null,
     imageViewer: '',
     items: [],
     product: '',
     receiptName: '',
     guests: '',
-    price: ''
+    price: '',
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
+    //api.addPicture(this.state.image)
     let myImage = this.state.image;
-
+    //console.log(myImage)
+    api.addPicture(myImage).then(pic=>{
+      this.setState({ pic })
+    })
     window.Tesseract.recognize(myImage)
     .then(result => {
         this.cleanUp(result.text)
@@ -28,7 +32,6 @@ class ReceiptUpload extends Component {
       document.getElementById("ocr_status")
         .innerText = result["status"] + " (" +
         (result["progress"] * 100).toFixed(2) + "%)";
-
     }).then(() => {
       document.getElementById("edit-receipt").style.visibility = "visible"
       document.getElementById("ocr_status").innerText = "";
@@ -67,7 +70,7 @@ class ReceiptUpload extends Component {
     reader.onloadend = () => {
       this.setState({
         image,
-        imageViewer: reader.result
+        imageViewer: reader.result,
       })
     }
     reader.readAsDataURL(image)
@@ -97,7 +100,8 @@ class ReceiptUpload extends Component {
         console.log(e.target[i+"_0"].value, e.target[i+"_1"].value);
         updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
     }
-    Axios.post(`${SERVER_URL}/savedReceipt`, { items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
+    console.log(this.state.pic)
+    Axios.post(`${SERVER_URL}/savedReceipt`, { imgPath: this.state.pic.url, items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
       console.log(responseFromServer, receiptName, guests, updatedReceipt)
     })
   }
@@ -107,14 +111,17 @@ class ReceiptUpload extends Component {
     return (
       <div>
         <div className="receipt-page container">
-          <form className="form-receipt" onSubmit={e => this.handleSubmit(e)}>
+          <form
+            className="form-receipt"
+            onSubmit={e => this.handleSubmit(e)}
+          >
             <label htmlFor="receiptName">Name Your Receipt</label>
             <input
               id="receiptName"
               type="text"
               placeholder="Receipt Name"
               value={this.state.receiptName}
-              onChange={(e) => this.handleReceiptName(e)}
+              onChange={e => this.handleReceiptName(e)}
             />
 
             <label htmlFor="guests">Add Guests</label>
@@ -123,47 +130,57 @@ class ReceiptUpload extends Component {
               type="text"
               placeholder="Add guest names"
               value={this.state.guests}
-              onChange={(e) => this.handleGuests(e)}
+              onChange={e => this.handleGuests(e)}
             />
 
             <label htmlFor="photo">Upload Your Receipt</label>
             <input
               style={{
-                color: "white",
+                color: "black",
                 fontSize: "0.8rem",
                 border: "none",
                 marginBottom: "5px"
               }}
               type="file"
               name="photo"
-              onChange={(e) => {
+              onChange={e => {
                 this.imageChange(e);
               }}
             />
+            
 
-            <button type="submit" id="go_button" style={{visibility: 'visibile'}}>
+            <button
+              type="submit"
+              id="go_button"
+              style={{ visibility: "visibile" }}
+            >
               UPLOAD FILE
             </button>
           </form>
 
           <div className="receipt-results">
-
-            <div style={{ color: "white" }} id="ocr_status">
+            <div style={{ color: "rgb(0, 127, 188)" }} id="ocr_status">
               {" "}
             </div>
 
             <form onSubmit={this.newSubmit}>
-              <label id="edit-receipt" style={{ visibility: 'hidden', color: 'rgb(221, 118, 34)'}}>Edit Receipt</label>
+              <label
+                id="edit-receipt"
+                style={{ visibility: "hidden", color: "rgb(0, 127, 188)" }}
+              >
+                Edit Receipt
+              </label>
               {this.showReceipt()}
-              <button id="submit-btn" type="submit" style={{ visibility: 'hidden' }}>
+              <button
+                id="submit-btn"
+                type="submit"
+                style={{ visibility: "hidden" }}
+              >
                 SAVE AND SUBMIT
               </button>
-
             </form>
           </div>
-
         </div>
-
       </div>
     );
   }

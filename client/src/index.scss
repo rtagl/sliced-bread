@@ -192,7 +192,7 @@ body {
 }
 
 .form-receipt label {
-  color: $secondary;
+  color: $fourth;
   display: inline-block;
   margin-bottom: 10px;
   // text-align: center;
@@ -213,9 +213,9 @@ body {
 }
 
 .form-receipt button {
-  background: $secondary;
+  background: rgb(33, 167, 33);
   border: 2px solid $secondary;
-  border-radius: 4px;
+  border-radius: 5px;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -229,7 +229,8 @@ body {
 
 .form-receipt button:hover {
   background: #fff;
-  color: $secondary;
+  color: rgb(33, 167, 33);
+  border: 2px solid rgb(33, 167, 33);
   transition: .3s ease background;
 }
 
@@ -252,14 +253,14 @@ label#edit-receipt {
 }
 
 .items-chart input {
-  width: 45%;
+  width: 43%;
   color: rgb(14, 13, 13);
   font-family: 'Roboto', sans-serif;
   border: 1px solid $secondary;
   margin: 5px;
-  height: 40px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  height: 25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   padding-left: 5px;
   padding-right: 5px;
   border-radius: 3px;
@@ -267,8 +268,8 @@ label#edit-receipt {
 }
 
 #submit-btn {
-  background: $secondary;
-  border: 2px solid $secondary;
+  background: rgb(33, 167, 33);
+  // border: 2px solid $secondary;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
@@ -284,7 +285,8 @@ label#edit-receipt {
 
 #submit-btn:hover {
   background: #fff;
-  color: $secondary;
+  color: rgb(33, 167, 33);
+  border: 2px solid rgb(33, 167, 33); 
   transition: .3s ease background;
 }
 

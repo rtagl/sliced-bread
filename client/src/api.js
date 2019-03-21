@@ -66,4 +66,21 @@ export default {
   // This is an example on how to use this method in a different file
   // api.getCountries().then(countries => { /* ... */ })
  
+  // adding pictures
+  addPicture(file) {
+    console.log(file)
+    const formData = new FormData();
+    formData.append("picture", file)
+    return service
+      .post('/users/first-user/pictures', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => {
+        console.log(res.data)
+        return res.data
+      })
+      .catch(errHandler);
+  }
 }
