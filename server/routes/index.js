@@ -2,6 +2,7 @@ const express = require('express');
 const { isLoggedIn } = require('../middlewares')
 const router = express.Router();
 const Receipt = require("../models/Receipt");
+const parser = require("../configs/cloudinary.js");
 
 
 
@@ -23,5 +24,22 @@ router.post("/savedReceipt", (req, res, next) => {
   })
 
 })
+
+router.post(
+  "/users/first-user/pictures",
+  parser.single("picture"),
+  (req, res, next) => {
+
+    console.log("MADEITITITITIT")
+    Receipt.findOneAndUpdate({}, { imgPath: req.file.url }).then(() => {
+      res.json({
+        success: true,
+        imgPath: req.file.url
+      });
+    });
+  }
+);
+
+
 
 module.exports = router;
