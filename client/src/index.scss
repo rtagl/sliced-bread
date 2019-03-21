@@ -295,3 +295,23 @@ label#edit-receipt {
   display: flex;
   flex-direction: row;
 }
+
+.Group {
+  width: 400px;
+  margin-left: 50px;
+  margin-top: 40px;
+}
+
+.group-items {
+  background-color: $fourth;
+  width: 60%;
+  color: white;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.group-items div {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 5px;
+}

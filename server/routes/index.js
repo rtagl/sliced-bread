@@ -31,14 +31,22 @@ router.post(
   (req, res, next) => {
 
     console.log("MADEITITITITIT")
-    Receipt.findOneAndUpdate({}, { imgPath: req.file.url }).then(() => {
-      res.json({
-        success: true,
-        imgPath: req.file.url
-      });
-    });
+    res.json({ url: req.file.url })
+    // Receipt.findOneAndUpdate({}, { imgPath: req.file.url }).then(() => {
+    //   res.json({
+    //     success: true,
+    //     imgPath: req.file.url
+    //   });
+    // });
   }
 );
+
+
+router.get('/group/:id', (req, res, next) => {
+  Receipt.findById(req.params.id).then(theReceiptFromDB=>{
+    res.json(theReceiptFromDB)
+  })
+})
 
 
 

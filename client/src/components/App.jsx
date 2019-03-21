@@ -6,7 +6,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import api from '../api';
-
+import GroupPage from "./pages/GroupPage"
 
 class App extends Component {
   state = {
@@ -81,7 +81,12 @@ class App extends Component {
           <Route
             path='/profile'
             render={(props) => <Profile {...props} setUser={this.setUser} />}
+          />          
+          <Route
+            path='/group/:id'
+            render={(props) => <GroupPage {...props} setUser={this.setUser} />}
           />
+          
           
 
           

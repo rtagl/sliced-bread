@@ -14,6 +14,7 @@ class ReceiptUpload extends Component {
     receiptName: '',
     guests: '',
     price: '',
+    pic: ''
   }
 
   handleSubmit = (e) => {
@@ -66,7 +67,6 @@ class ReceiptUpload extends Component {
     e.preventDefault()
     let reader = new FileReader()
     let image = e.target.files[0]
-
     reader.onloadend = () => {
       this.setState({
         image,
@@ -90,7 +90,13 @@ class ReceiptUpload extends Component {
     })
   }
 
-
+  displayImage = () => {
+    return (
+      <div>
+        <img width="300" src={this.state.pic.url} alt=""/>
+      </div>
+    )
+  } 
   newSubmit = (e) => {
     e.preventDefault()
     let receiptName = this.state.receiptName
@@ -100,9 +106,10 @@ class ReceiptUpload extends Component {
         console.log(e.target[i+"_0"].value, e.target[i+"_1"].value);
         updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
     }
-    console.log(this.state.pic)
+    console.log("howdy", this.state.pic);
     Axios.post(`${SERVER_URL}/savedReceipt`, { imgPath: this.state.pic.url, items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
-      console.log(responseFromServer, receiptName, guests, updatedReceipt)
+      console.log(responseFromServer, responseFromServer.data._id);
+      this.props.history.push(`/group/${responseFromServer.data._id}`);
     })
   }
 
@@ -179,6 +186,11 @@ class ReceiptUpload extends Component {
                 SAVE AND SUBMIT
               </button>
             </form>
+          </div>
+          <div>
+
+            {this.displayImage()}
+
           </div>
         </div>
       </div>
