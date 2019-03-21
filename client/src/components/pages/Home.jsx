@@ -17,23 +17,27 @@ class Home extends Component {
 
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(e)
+  }
+
 
   render() {                
     return (
       <div className="Home">
         <div className="Party-code">
-          <form id="form">
-
+          <form id="form" onSubmit={e => this.handleSubmit(e)}>
             <h2>Find a Group</h2>
 
             <div>
-              <input type="text" placeholder="Party Code"></input>
-              <button type="submit">Submit</button>
-            </div>
 
+              <input type="text" placeholder="Party Code" />
+              <button type="submit">Submit</button>
+
+            </div>
           </form>
         </div>
-        
       </div>
     );
   }
