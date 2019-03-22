@@ -7,26 +7,57 @@ import { throws } from 'assert';
 class Group extends Component {
   state = {
     items: [],
-    receiptName: '',
-    owner: '',
+    receiptName: "",
+    owner: "",
     guests: [],
-    imgPath: ''
+    imgPath: "",
+    value: 'select'
   };
 
   componentDidMount() {
+    Axios.get(`${SERVER_URL}/group/${this.props.match.params.id}`).then(res => {
 
-    Axios.get(`${SERVER_URL}/group/${this.props.match.params.id}`)
-      .then(res => {
-        this.setState({
-          receiptName: res.data.receiptName,
-          items: res.data.items,
-          owner: res.data.owner,
-          guests: res.data.guests.split(','),
-          imgPath: res.data.imgPath
-        })
+
+      let newGuestList = [];
+      res.data.guests.split(",").map((guest, i) => {
+          newGuestList.push({ id: i, name:guest, items: [], total: 0})
       })
+      console.log(newGuestList)
+      this.setState({
+        receiptName: res.data.receiptName,
+        items: res.data.items,
+        owner: res.data.owner,
+        guests: newGuestList, //res.data.guests.split(","),
+        imgPath: res.data.imgPath
+      });
+    });
 
-      //this.splitGuests()
+
+
+    //this.splitGuests()
+  }
+
+  handleChange = (e) => {
+    console.log(e.target.name, e.target.value)
+    let items = e.target.name.split(',')
+    let item = items[0]
+    let price = items[1]
+    // let selectedItem = e.target.name;
+    let selectedPerson = e.target.value;
+
+
+    console.log(price,item, 'item split')
+    let updatedGuestList = [...this.state.guests]
+    updatedGuestList.forEach(eachGuest=>{
+      // console.log(eachGuest.name, e.target.name, e.target.value);
+      if(eachGuest.name === selectedPerson){
+        eachGuest.items.push(item)
+        eachGuest.total += Number(price);
+      }
+      //return eachGuest
+    })
+    console.log(updatedGuestList);
+    this.setState({ guests: updatedGuestList})
   }
 
   showItems = () => {
@@ -34,60 +65,41 @@ class Group extends Component {
       return (
         <div className="group-items">
           <div className="food-bubble">
-          <div key={i}>{`${item[0]}: $${item[1]}`}</div>
-          <button>+</button>
+            <div key={i}>{`${item[0]}: $${item[1]}`}</div>
+            <select name={item[0]+','+item[1]}  onChange={this.handleChange}>
+              {this.state.guests.map((g)=>{
+                return (
+                  <option value={g.name}>{g.name}</option>
+                );
+              })}
+            </select>
           </div>
         </div>
       );
-    })
-  }
+    });
+  };
 
-  // splitGuests = () => {
-  //   console.log('HIIIIIIIIIII')
-  //   let str = [...this.state.guests]
-  //   console.log('yooyo', str)
-  //   //let strClean = str.replace(/\s/g, '')
-  //   //console.log('replaced', strClean)
-  //   let guestArr = []
-  //   guestArr = str.split(' ')
-  //   console.log('hi', guestArr)
-    
-  //   this.setState({
-  //     guestArr
-  //   })
-  // }
 
   showGuests = () => {
-    let guestList = [...this.state.guests]
-    console.log('hjijhrije', this)
+    let guestList = [...this.state.guests];
     return guestList.map((guest, i) => {
-      return (
-        <div key={i}>
-          {guest}
-        </div>
-      )
-    })
+      return <div key={i}>{guest.name} {guest.total} {guest.items.join(',')}</div>;
+    });
     //return guestList
-  }
+  };
 
   render() {
-    console.log('this.state', this.state)
+    console.log("this.state", this.state);
     // const {receiptName, items, owner, guests} = {...this.state}
     return (
       <div>
         <div className="Group">
-          <h2>Group {this.state.receiptName}</h2>
-          {/* <div>{owner}</div>
-          <div>{guests}</div>
-          <div>{items}</div> */}
-          <div className="items-row">{this.showItems()}</div>
+          <h2>{this.state.receiptName}</h2>
+          <div>
+            <div className="items-row">{this.showItems()}</div>
+          </div>
           {this.showGuests()}
         </div>
-        {/* <div>
-          <div>
-            {this.showGuests()}
-          </div>
-        </div> */}
       </div>
     );
   }

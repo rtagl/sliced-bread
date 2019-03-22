@@ -117,7 +117,7 @@ class ReceiptUpload extends Component {
     if (!api.isLoggedIn()) return <Redirect to="/login" />
     return (
       <div>
-        <div className="receipt-page container">
+        <div className="receipt-page">
           <form
             className="form-receipt"
             onSubmit={e => this.handleSubmit(e)}
