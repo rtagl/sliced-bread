@@ -297,21 +297,51 @@ label#edit-receipt {
 }
 
 .Group {
-  width: 400px;
+  width: 700px;
   margin-left: 50px;
   margin-top: 40px;
 }
 
 .group-items {
-  background-color: $fourth;
-  width: 60%;
+  background-color: rgb(7, 152, 219);
+  width: 40%;
   color: white;
   border-radius: 5px;
-  margin: 10px;
-}
-
-.group-items div {
+  margin: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 5px;
+}
+
+.group-items:hover {
+  background-color: rgb(4, 167, 243);
+}
+
+
+.items-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.food-bubble {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-right: 15px;
+}
+
+
+
+.food-bubble button {
+  padding-bottom: 4px;
+  color: white;
+  background-color: rgb(33, 167, 33);
+  border: none;
+  border-radius: 2px;
+}
+
+.food-bubble button:hover {
+  background-color: white;
+  color: rgb(33, 167, 33);
 }
