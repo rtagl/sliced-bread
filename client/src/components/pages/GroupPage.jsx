@@ -67,11 +67,14 @@ class Group extends Component {
           <div className="food-bubble">
             <div key={i}>{`${item[0]}: $${item[1]}`}</div>
             <select name={item[0]+','+item[1]}  onChange={this.handleChange}>
+                <option>Select</option>
               {this.state.guests.map((g)=>{
                 return (
-                  <option value={g.name}>{g.name}</option>
+                    <option value={g.name}>{g.name}</option>
                 );
               })}
+                <option value="tip">Tip</option>
+                <option value="tax">Tax</option>
             </select>
           </div>
         </div>
@@ -83,7 +86,7 @@ class Group extends Component {
   showGuests = () => {
     let guestList = [...this.state.guests];
     return guestList.map((guest, i) => {
-      return <div key={i}>{guest.name} {guest.total} {guest.items.join(',')}</div>;
+      return <div key={i} className="totals-row">{guest.name} ${guest.total.toFixed(2)}</div>;
     });
     //return guestList
   };
@@ -93,12 +96,16 @@ class Group extends Component {
     // const {receiptName, items, owner, guests} = {...this.state}
     return (
       <div>
+        <h2 style={{marginTop: '20px', marginLeft: '30px'}}>Receipt for {this.state.receiptName}</h2>
         <div className="Group">
-          <h2>{this.state.receiptName}</h2>
           <div>
             <div className="items-row">{this.showItems()}</div>
           </div>
-          {this.showGuests()}
+          <div className="totals">
+            <div>
+              {this.showGuests()}
+            </div>
+          </div>
         </div>
       </div>
     );
