@@ -93,7 +93,7 @@ class ReceiptUpload extends Component {
   displayImage = () => {
     return (
       <div>
-        <img width="300" src={this.state.pic.url} alt=""/>
+        <img width="300" style={{marginLeft: '50px', marginTop: '50px'}}src={this.state.pic.url} alt=""/>
       </div>
     )
   } 
