@@ -73,8 +73,6 @@ class Group extends Component {
                     <option value={g.name}>{g.name}</option>
                 );
               })}
-                <option value="tip">Tip</option>
-                <option value="tax">Tax</option>
             </select>
           </div>
         </div>
