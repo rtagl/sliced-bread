@@ -14,6 +14,7 @@ class Group extends Component {
     value: 'select'
   };
 
+  // receives the data from the receipt page and sets the state
   componentDidMount() {
     Axios.get(`${SERVER_URL}/group/${this.props.match.params.id}`).then(res => {
 
@@ -37,6 +38,7 @@ class Group extends Component {
     //this.splitGuests()
   }
 
+  // logic for changing state when a guest is assigned to a food item 
   handleChange = (e) => {
     console.log(e.target.name, e.target.value)
     let items = e.target.name.split(',')
@@ -49,7 +51,6 @@ class Group extends Component {
     console.log(price,item, 'item split')
     let updatedGuestList = [...this.state.guests]
     updatedGuestList.forEach(eachGuest=>{
-      // console.log(eachGuest.name, e.target.name, e.target.value);
       if(eachGuest.name === selectedPerson){
         eachGuest.items.push(item)
         eachGuest.total += Number(price);
@@ -60,6 +61,9 @@ class Group extends Component {
     this.setState({ guests: updatedGuestList})
   }
 
+  // displays a div for each food items from the receipt, prices, and
+  // drop down list with each guests name. Clicking a guest adds that food items
+  // price to the user
   showItems = () => {
     return this.state.items.map((item, i) => {
       return (
@@ -80,7 +84,7 @@ class Group extends Component {
     });
   };
 
-
+  // Displays list of guests and their individual updated total $ owed 
   showGuests = () => {
     let guestList = [...this.state.guests];
     return guestList.map((guest, i) => {

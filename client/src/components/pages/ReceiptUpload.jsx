@@ -17,6 +17,7 @@ class ReceiptUpload extends Component {
     pic: ''
   }
 
+  // passes image through tesseract
   handleSubmit = (e) => {
     e.preventDefault()
     //api.addPicture(this.state.image)
@@ -52,6 +53,8 @@ class ReceiptUpload extends Component {
     })
   }
 
+  // creates a number of inputs based on how many dollar signs there are
+  // on the receipt
   showReceipt = () => {
     return this.state.items.map((item,i)=> {
       return (
@@ -76,6 +79,7 @@ class ReceiptUpload extends Component {
     reader.readAsDataURL(image)
   }
 
+  // parses through tesseract string and splits at the $ signs
   cleanUp = (text) => {
     let lines = text.split("\n")
     let items = []
@@ -90,6 +94,7 @@ class ReceiptUpload extends Component {
     })
   }
 
+  //displays image of receipt
   displayImage = () => {
     return (
       <div>
@@ -97,6 +102,8 @@ class ReceiptUpload extends Component {
       </div>
     )
   } 
+
+  // on submit posts the data to the database
   newSubmit = (e) => {
     e.preventDefault()
     let receiptName = this.state.receiptName
@@ -106,7 +113,6 @@ class ReceiptUpload extends Component {
         console.log(e.target[i+"_0"].value, e.target[i+"_1"].value);
         updatedReceipt.push([e.target[i + "_0"].value, e.target[i + "_1"].value])
     }
-    console.log("howdy", this.state.pic);
     Axios.post(`${SERVER_URL}/savedReceipt`, { imgPath: this.state.pic.url, items: updatedReceipt, receiptName: receiptName, guests: guests}).then(responseFromServer => {
       console.log(responseFromServer, responseFromServer.data._id);
       this.props.history.push(`/group/${responseFromServer.data._id}`);
