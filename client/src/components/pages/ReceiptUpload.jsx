@@ -80,6 +80,7 @@ class ReceiptUpload extends Component {
   }
 
   // parses through tesseract string and splits at the $ signs
+  // check filter
   cleanUp = (text) => {
     let lines = text.split("\n")
     let items = []
