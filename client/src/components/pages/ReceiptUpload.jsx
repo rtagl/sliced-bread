@@ -80,7 +80,7 @@ class ReceiptUpload extends Component {
   }
 
   // parses through tesseract string and splits at the $ signs
-  // check filter
+  // check filter method
   cleanUp = (text) => {
     let lines = text.split("\n")
     let items = []
@@ -180,7 +180,7 @@ class ReceiptUpload extends Component {
             <form onSubmit={this.newSubmit}>
               <label
                 id="edit-receipt"
-                style={{ visibility: "hidden", color: "rgb(0, 127, 188)" }}
+                style={{ visibility: "hidden", color: "rgb(0, 127, 189)" }}
               >
                 Edit Receipt
               </label>
