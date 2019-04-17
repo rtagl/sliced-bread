@@ -22,7 +22,7 @@ class Home extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
+    console.log(e.target.value, 'testing')
 
   }
 
@@ -30,7 +30,7 @@ class Home extends Component {
     this.setState({
       group: e.target.value
     },()=>{
-        console.log(this.state.group)
+        console.log(this.state.group, 'testing')
     })
   }
 
