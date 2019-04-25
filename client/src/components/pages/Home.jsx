@@ -41,16 +41,6 @@ class Home extends Component {
     return (
       <div className="Home">
         <div className="Party-code">
-          <form id="form" onSubmit={e => this.handleSubmit(e)}>
-            <h2>Find a Group</h2>
-
-            <div>
-
-              <input type="text" placeholder="Party Code" value={this.state.group} onChange={(e) => this.handleChange(e)} />
-              <button type="submit">Submit</button>
-
-            </div>
-          </form>
         </div>
       </div>
     );
