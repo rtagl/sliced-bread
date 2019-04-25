@@ -33,9 +33,6 @@ class Group extends Component {
       });
     });
 
-
-
-    //this.splitGuests()
   }
 
   // logic for changing state when a guest is assigned to a food item 
